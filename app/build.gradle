@@ -21,6 +21,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "NAVER_MAP_ID", properties["MAP_KEY"]
+        buildConfigField "String", "CAMPING_API_KEY", properties["CAMPING_KEY"]
+        buildConfigField "String", "GYM_API_KEY", properties["GYM_KEY"]
     }
 
     buildTypes {
