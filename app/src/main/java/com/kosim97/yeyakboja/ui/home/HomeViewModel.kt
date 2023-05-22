@@ -3,8 +3,8 @@ package com.kosim97.yeyakboja.ui.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kosim97.yeyakboja.data.repository.gym.GymRemoteRepository
-import com.kosim97.yeyakboja.data.util.ApiResult
+import com.kosim97.domain.usecase.GymUseCaseImp
+import com.kosim97.domain.util.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -13,21 +13,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: GymRemoteRepository
+    private val repository: GymUseCaseImp
 ): ViewModel() {
 
     fun getGymAllData() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getGymApiData(1,5)
+            repository.invoke(0,0)
                 .collectLatest {
-                    when (it) {
+                    when(it) {
                         is ApiResult.Success -> {
-                            Log.d("test","${it.data?.list?.dataList}")
+                            Log.d("test","asd ${it.data}")
                         }
                         else -> {
-
+                            Log.d("test","asd1 ${it}")
                         }
                     }
+
                 }
         }
     }

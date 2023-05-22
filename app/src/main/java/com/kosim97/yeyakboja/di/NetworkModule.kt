@@ -1,9 +1,10 @@
 package com.kosim97.yeyakboja.di
 
 import android.content.Context
+import com.kosim97.data.api.GymApi
 import com.kosim97.yeyakboja.BuildConfig
-import com.kosim97.yeyakboja.data.remote.gym.GymService
-import com.kosim97.yeyakboja.data.repository.gym.GymRemoteDataSource
+import com.kosim97.data.remote.gym.GymRemoteDataSource
+import com.kosim97.domain.repository.GymRemoteRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +14,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -76,8 +76,8 @@ object NetworkModule {
     fun provideGymRemoteDataSource(
         @GymRetrofit
         retrofit: Retrofit
-    ): GymRemoteDataSource {
-        return retrofit.create(GymService::class.java)
+    ): GymApi {
+        return retrofit.create(GymApi::class.java)
     }
 }
 
