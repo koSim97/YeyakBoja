@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-interface CampingUseCase {
+interface GetCampingInfo {
     suspend operator fun invoke(start: Int, end: Int, minClass: String): Flow<ApiResult<List<CampingDomainModel>>>
 }
 
-class CampingUseCaseImp @Inject constructor(
+class GetCampingInfoImp @Inject constructor(
     private val repository: CampingRemoteRepository
-): CampingUseCase {
+): GetCampingInfo {
     override suspend fun invoke(
         start: Int,
         end: Int,

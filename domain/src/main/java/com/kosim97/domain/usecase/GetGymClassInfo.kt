@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-interface GymClassUseCase {
+interface GetGymClassInfo {
     suspend operator fun invoke(start: Int, end: Int, minClass: String): Flow<ApiResult<List<GymDomainModel>>>
 }
 
-class GymClassUseCaseImp @Inject constructor(
+class GetGymClassInfoImp @Inject constructor(
     private val repository: GymRemoteRepository
-): GymClassUseCase {
+): GetGymClassInfo {
     override suspend fun invoke(
         start: Int,
         end: Int,

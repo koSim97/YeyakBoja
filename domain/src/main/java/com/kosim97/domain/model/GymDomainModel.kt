@@ -18,11 +18,3 @@ data class GymDomainModel(
     var gymUseStart: String,
     var gymUseEnd: String
 )
-
-data class GymDomainList(
-    var list: GymDomainData
-)
-
-data class GymDomainData(
-    var dataList: ArrayList<GymDomainModel>
-)

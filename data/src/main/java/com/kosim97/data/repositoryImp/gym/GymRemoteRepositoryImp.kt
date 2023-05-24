@@ -1,7 +1,6 @@
 package com.kosim97.data.repositoryImp.gym
 
 import com.kosim97.data.remote.gym.GymRemoteDataSource
-import com.kosim97.domain.model.GymDomainList
 import com.kosim97.domain.repository.GymRemoteRepository
 import com.kosim97.domain.model.GymDomainModel
 import com.kosim97.domain.util.ApiResult
