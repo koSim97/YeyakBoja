@@ -16,4 +16,12 @@ class GymRemoteRepositoryImp @Inject constructor(
     override suspend fun getGymAllList(start: Int, end: Int): Flow<ApiResult<List<GymDomainModel>>> = flow {
         emit(remote.getGymAllList(start, end))
     }
+
+    override suspend fun getGymClassList(
+        start: Int,
+        end: Int,
+        minClass: String
+    ): Flow<ApiResult<List<GymDomainModel>>> = flow {
+        emit(remote.getGymClassList(start, end, minClass))
+    }
 }

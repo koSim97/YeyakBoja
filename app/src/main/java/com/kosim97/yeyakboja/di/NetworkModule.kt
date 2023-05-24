@@ -1,6 +1,7 @@
 package com.kosim97.yeyakboja.di
 
 import android.content.Context
+import com.kosim97.data.api.CampingApi
 import com.kosim97.data.api.GymApi
 import com.kosim97.yeyakboja.BuildConfig
 import com.kosim97.data.remote.gym.GymRemoteDataSource
@@ -14,6 +15,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
 import javax.inject.Singleton
@@ -73,11 +75,20 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideGymRemoteDataSource(
+    fun provideGymApi(
         @GymRetrofit
         retrofit: Retrofit
     ): GymApi {
         return retrofit.create(GymApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCampingApi(
+        @CampingRetrofit
+        retrofit: Retrofit
+    ): CampingApi {
+        return retrofit.create(CampingApi::class.java)
     }
 }
 

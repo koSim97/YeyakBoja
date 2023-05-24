@@ -12,8 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface GymRemoteDataSource{
-    suspend fun getGymAllList(
-        start: Int,
-        end: Int
-    ): ApiResult<List<GymDomainModel>>
+    suspend fun getGymAllList(start: Int, end: Int): ApiResult<List<GymDomainModel>>
+
+    suspend fun getGymClassList(start: Int, end: Int, minClass: String): ApiResult<List<GymDomainModel>>
 }

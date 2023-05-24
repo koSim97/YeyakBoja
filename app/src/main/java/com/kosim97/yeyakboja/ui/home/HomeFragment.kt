@@ -33,7 +33,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        homeViewModel.getGymAllData()
+        homeViewModel.getGymClassData()
+        homeViewModel.getCampingData()
     }
 
     private fun initView() {

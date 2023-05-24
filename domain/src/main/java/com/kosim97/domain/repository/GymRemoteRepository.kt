@@ -9,4 +9,6 @@ import retrofit2.Response
 
 interface GymRemoteRepository {
     suspend fun getGymAllList(start: Int, end: Int): Flow<ApiResult<List<GymDomainModel>>>
+
+    suspend fun getGymClassList(start: Int, end: Int, minClass: String): Flow<ApiResult<List<GymDomainModel>>>
 }

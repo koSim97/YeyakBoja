@@ -11,5 +11,16 @@ interface GymApi {
         @Path("START_INDEX")
         start: Int,
         @Path("END_INDEX")
-        end: Int): Response<GymApiList>
+        end: Int
+    ): Response<GymApiList>
+
+    @GET("ListPublicReservationSport/{START_INDEX}/{END_INDEX}/{MINCLASSNM}")
+    suspend fun getGymClassList(
+        @Path("START_INDEX")
+        start: Int,
+        @Path("END_INDEX")
+        end: Int,
+        @Path("MINCLASSNM")
+        minClass: String
+    ): Response<GymApiList>
 }
