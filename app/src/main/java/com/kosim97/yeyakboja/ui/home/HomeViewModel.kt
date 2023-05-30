@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kosim97.domain.model.CampingDomainModel
+import com.kosim97.domain.model.GymDomainModel
 import com.kosim97.domain.usecase.GetCampingInfoImp
 import com.kosim97.domain.usecase.GetGymClassInfoImp
 import com.kosim97.domain.usecase.GymUseCaseImp
@@ -12,6 +13,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,6 +28,9 @@ class HomeViewModel @Inject constructor(
     private val _campingList = MutableSharedFlow<List<CampingDomainModel>>(0)
     val campingList: SharedFlow<List<CampingDomainModel>>
         get() = _campingList
+
+    private val _footballList = MutableSharedFlow<List<GymDomainModel>>(0)
+    val footballList = _footballList.asSharedFlow()
 
     fun getGymAllData() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -44,13 +49,24 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getGymClassData() {
+    fun getFootballData() {
         viewModelScope.launch(Dispatchers.IO) {
             getGymClassData(1, 10, "풋살장")
                 .collectLatest {
                     when (it) {
                         is ApiResult.Success -> {
                             Log.d("test","success ${it.data}")
+                            it.data?.let { data ->
+                                data.map { item ->
+                                    item.gymTitle = item.gymTitle.replace("&lt;","<")
+                                    item.gymTitle = item.gymTitle.replace("&gt;",">")
+                                    item.gymServiceStart = item.gymServiceStart.substring(0,10)
+                                    item.gymServiceEnd = item.gymServiceEnd.substring(0,10)
+                                    item.gymActiveStart = item.gymActiveStart.substring(0,10)
+                                    item.gymActiveEnd = item.gymActiveEnd.substring(0,10)
+                                }
+                                _footballList.emit(data)
+                            }
                         }
                         else -> {
                             Log.d("test","fail $it")
