@@ -1,20 +1,24 @@
 package com.kosim97.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class CampingDomainModel(
-    var gymCategory: String,
-    var gymActive: String,
-    var gymTitle: String,
-    var gymFee: String,
-    var gymLocationName: String,
-    var gymURL: String,
-    var gymLocationX: String,
-    var gymLocationY: String,
-    var gymServiceStart: String,
-    var gymServiceEnd: String,
-    var gymActiveStart: String,
-    var gymActiveEnd: String,
-    var gymImage: String,
-    var gymPhone: String,
-    var gymUseStart: String,
-    var gymUseEnd: String
-)
+    var campingCategory: String,
+    var campingActive: String,
+    var campingTitle: String,
+    var campingFee: String,
+    var campingLocationName: String,
+    var campingURL: String,
+    var campingLocationX: String,
+    var campingLocationY: String,
+    var campingServiceStart: String,
+    var campingServiceEnd: String,
+    var campingActiveStart: String,
+    var campingActiveEnd: String,
+    var campingImage: String,
+    var campingPhone: String,
+    var campingUseStart: String,
+    var campingUseEnd: String
+): Parcelable

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.kosim97.yeyakboja.ui.detail.DetailViewModel" />
+        <variable
+            name="campingItem"
+            type="com.kosim97.domain.model.CampingDomainModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/camping_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/camping_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center"
+                android:text="@{campingItem.campingTitle}"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_iv"
+                tools:text="테스트트트트트트트트트트트" />
+
+            <TextView
+                android:id="@+id/reserve_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="예약 가능 날짜"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_title_tv" />
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/reserve_tv" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/calendar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="300dp"-->
+<!--                android:text="asdasdasd"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/reserve_tv"/>-->
+
+            <TextView
+                android:id="@+id/camping_lo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="장소명"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+            <TextView
+                android:id="@+id/camping_lo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{campingItem.campingLocationName}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/camping_service_name"
+                app:layout_constraintTop_toBottomOf="@+id/calendar"
+                tools:text="adsadsa" />
+
+            <TextView
+                android:id="@+id/camping_service_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="접수기간"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_lo_name" />
+
+            <TextView
+                android:id="@+id/camping_service_start_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{campingItem.campingServiceStart}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/camping_service_name"
+                app:layout_constraintTop_toBottomOf="@+id/camping_lo_name"
+                tools:text="adsadsa" />
+
+            <TextView
+                android:id="@+id/camping_service_end_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{campingItem.campingServiceEnd}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/camping_service_start_tv"
+                app:layout_constraintTop_toBottomOf="@+id/camping_lo_name"
+                tools:text="adsadsa" />
+
+            <TextView
+                android:id="@+id/camping_active_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="이용기간"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_service_name" />
+
+            <TextView
+                android:id="@+id/camping_active_start_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{campingItem.campingActiveStart}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/camping_active_name"
+                app:layout_constraintTop_toBottomOf="@+id/camping_service_name"
+                tools:text="adsadsa" />
+
+            <TextView
+                android:id="@+id/camping_active_end_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{campingItem.campingActiveEnd}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintStart_toEndOf="@+id/camping_active_start_tv"
+                app:layout_constraintTop_toBottomOf="@+id/camping_service_name"
+                tools:text="adsadsa" />
+
+            <TextView
+                android:id="@+id/camping_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="전화번호"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_active_name" />
+
+            <TextView
+                android:id="@+id/camping_tel_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@{campingItem.campingPhone}"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintStart_toEndOf="@+id/camping_tel"
+                app:layout_constraintTop_toBottomOf="@+id/camping_active_name" />
+
+            <Button
+                android:id="@+id/camping_tel_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/baseline_phone_24"
+                app:layout_constraintStart_toEndOf="@+id/camping_tel_tv"
+                app:layout_constraintTop_toBottomOf="@+id/camping_active_name" />
+
+            <Button
+                android:id="@+id/camping_go_url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예약하러가기"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/camping_tel_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

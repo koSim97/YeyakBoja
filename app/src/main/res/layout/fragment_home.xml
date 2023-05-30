@@ -28,7 +28,8 @@
             android:id="@+id/camping_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
             android:fontFamily="@font/roboto_medium"
             android:text="캠핑장"
             android:textColor="@color/black"
@@ -39,15 +40,14 @@
         <Button
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/cm_btn_title_back_right"
-            app:layout_constraintBottom_toTopOf="@+id/camping_vp"
+            app:layout_constraintBottom_toTopOf="@+id/camping_rv"
             app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/camping_vp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/camping_rv"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="0dp"
             android:layout_margin="10dp"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
