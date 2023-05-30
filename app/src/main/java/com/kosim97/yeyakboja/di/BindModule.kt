@@ -2,12 +2,16 @@ package com.kosim97.yeyakboja.di
 
 import com.kosim97.data.remote.camping.CampingRemoteDataSource
 import com.kosim97.data.remote.camping.CampingRemoteDataSourceImp
+import com.kosim97.data.remote.reserve.ReserveRemoteDataSource
+import com.kosim97.data.remote.reserve.ReserveRemoteDataSourceImp
 import com.kosim97.data.remote.gym.GymRemoteDataSource
 import com.kosim97.data.remote.gym.GymRemoteDataSourceImp
 import com.kosim97.data.repositoryImp.camping.CampingRemoteRepositoryImp
 import com.kosim97.data.repositoryImp.gym.GymRemoteRepositoryImp
+import com.kosim97.data.repositoryImp.reserve.ReserveRemoteRepositoryImp
 import com.kosim97.domain.repository.CampingRemoteRepository
 import com.kosim97.domain.repository.GymRemoteRepository
+import com.kosim97.domain.repository.ReserveRemoteRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -40,4 +44,16 @@ abstract class BindModule {
     abstract fun bindCampingRemoteRepository(
         campingRemoteRepositoryImp: CampingRemoteRepositoryImp
     ): CampingRemoteRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindReserveRemoteDataSource(
+        reserveRemoteDataSourceImp: ReserveRemoteDataSourceImp
+    ): ReserveRemoteDataSource
+
+    @Binds
+    @Singleton
+    abstract fun bindReserveRemoteRepository(
+        reserveRemoteRepositoryImp: ReserveRemoteRepositoryImp
+    ): ReserveRemoteRepository
 }
