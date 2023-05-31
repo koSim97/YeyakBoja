@@ -1,14 +1,10 @@
 package com.kosim97.yeyakboja.ui.detail
 
 import android.os.Bundle
-import android.os.Parcel
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -24,15 +20,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 @AndroidEntryPoint
 class DetailFragment : Fragment() {
     private lateinit var detailBinding: FragmentDetailBinding
     private val detailViewModel: DetailViewModel by viewModels()
     private val args: DetailFragmentArgs by navArgs()
-    val calList = ArrayList<CalendarDay>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,10 +46,18 @@ class DetailFragment : Fragment() {
             detailViewModel.isGymData.emit(args.isGymData)
         }
         if (args.isGymData) {
+            if (args.gymItem?.gymPhone?.isEmpty() == true) {
+                args.gymItem?.gymPhone = getString(R.string.detail_empty_phone)
+                detailBinding.detailTelBtn.isEnabled = false
+            }
             detailBinding.gymItem = args.gymItem
             Glide.with(requireContext()).load(args.gymItem?.gymImage).into(detailBinding.detailIv)
             args.gymItem?.let { detailViewModel.getReserveList(it.gymURL) }
         } else {
+            if (args.campingItem?.campingPhone?.isEmpty() == true) {
+                args.campingItem?.campingPhone = getString(R.string.detail_empty_phone)
+                detailBinding.detailTelBtn.isEnabled = false
+            }
             detailBinding.campingItem = args.campingItem
             Glide.with(requireContext()).load(args.campingItem?.campingImage).into(detailBinding.detailIv)
             args.campingItem?.let { detailViewModel.getReserveList(it.campingURL) }

@@ -2,4 +2,5 @@
     <string name="app_name">YeyakBoja</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_empty_phone">하단 상세정보를 참고해주세요.</string>
 </resources>

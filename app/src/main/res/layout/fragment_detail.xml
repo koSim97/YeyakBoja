@@ -213,8 +213,8 @@
 
             <Button
                 android:id="@+id/detail_tel_btn"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/baseline_phone_24"
