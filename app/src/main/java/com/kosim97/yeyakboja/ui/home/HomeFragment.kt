@@ -17,19 +17,20 @@ import com.kosim97.domain.model.CampingDomainModel
 import com.kosim97.domain.model.GymDomainModel
 import com.kosim97.yeyakboja.databinding.FragmentHomeBinding
 import com.kosim97.yeyakboja.ui.home.camping.CampingAdapter
-import com.kosim97.yeyakboja.ui.home.football.FootballAdapter
+import com.kosim97.yeyakboja.ui.home.gym.GymAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.util.Collections
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var homeBinding: FragmentHomeBinding
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var campingAdapter: CampingAdapter
-    private lateinit var footballAdapter: FootballAdapter
+    private lateinit var footballAdapter: GymAdapter
+    private lateinit var soccerAdapter: GymAdapter
     private var isFirst = true
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,12 +49,18 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         initObserver()
-        homeViewModel.getFootballData()
-        homeViewModel.getCampingData()
+        initView()
     }
 
     private fun initView() {
-
+        if (isFirst) {
+            homeViewModel.getGymData("풋살장")
+            homeViewModel.getGymData("축구장")
+            homeViewModel.getCampingData()
+            isFirst = false
+        } else {
+            setAllItem()
+        }
     }
 
     private fun initObserver() {
@@ -77,6 +84,22 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.soccerList.collectLatest {
+                    val data = it.sortedByDescending { sort ->
+                        sort.gymActiveStart.replace("-","")
+                    }
+                    setSoccerItem(data)
+                }
+            }
+        }
+    }
+
+    private fun setAllItem() {
+        setCampingItem(homeViewModel.campingList.value)
+        setFootballItem(homeViewModel.footballList.value)
+        setSoccerItem(homeViewModel.soccerList.value)
     }
 
     private fun setCampingItem(data: List<CampingDomainModel>) {
@@ -93,7 +116,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setFootballItem(data: List<GymDomainModel>) {
-        footballAdapter = FootballAdapter(findNavController())
+        footballAdapter = GymAdapter(findNavController())
         homeBinding.footballRv.also {
             it.adapter = footballAdapter
             it.layoutManager = LinearLayoutManager(
@@ -103,5 +126,18 @@ class HomeFragment : Fragment() {
             )
         }
         footballAdapter.submitList(data.toMutableList())
+    }
+
+    private fun setSoccerItem(data: List<GymDomainModel>) {
+        soccerAdapter = GymAdapter(findNavController())
+        homeBinding.soccerRv.also {
+            it.adapter = soccerAdapter
+            it.layoutManager = LinearLayoutManager(
+                context,
+                RecyclerView.HORIZONTAL,
+                false
+            )
+        }
+        soccerAdapter.submitList(data.toMutableList())
     }
 }

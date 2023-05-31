@@ -22,9 +22,7 @@ class GetReserveDateListImp @Inject constructor(
             val docsArray= docsConvert.get("resultListDays") as JSONArray
             for (i in 0 until docsArray.length()) {
                 val docsObj = docsArray.getJSONObject(i)
-                Log.d("test","asd no $docsObj")
                 if (docsObj.get("SVC_RESVE_CODE") == "Y") {
-                    Log.d("test","asd $docsObj")
                     docsList.add(docsObj.get("YMD") as String)
                 }
             }

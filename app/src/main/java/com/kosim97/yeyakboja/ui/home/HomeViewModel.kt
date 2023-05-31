@@ -11,10 +11,7 @@ import com.kosim97.domain.usecase.GymUseCaseImp
 import com.kosim97.domain.util.ApiResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,41 +22,14 @@ class HomeViewModel @Inject constructor(
     private val getCampingData: GetCampingInfoImp
 ): ViewModel() {
 
-    private val _campingList = MutableSharedFlow<List<CampingDomainModel>>(0)
-    val campingList: SharedFlow<List<CampingDomainModel>>
-        get() = _campingList
+    private val _campingList = MutableStateFlow(listOf<CampingDomainModel>())
+    val campingList = _campingList.asStateFlow()
 
-    private val _footballList = MutableSharedFlow<List<GymDomainModel>>(0)
-    val footballList = _footballList.asSharedFlow()
+    private val _footballList = MutableStateFlow(listOf<GymDomainModel>())
+    val footballList = _footballList.asStateFlow()
 
-    fun getFootballData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            getGymClassData(1, 100, "풋살장")
-                .collectLatest {
-                    when (it) {
-                        is ApiResult.Success -> {
-                            it.data?.let { data ->
-                                val convertData = data.filter { filterData ->
-                                    filterData.gymActive == "접수중"
-                                }
-                                convertData.map { item ->
-                                    item.gymTitle = item.gymTitle.replace("&lt;","<")
-                                    item.gymTitle = item.gymTitle.replace("&gt;",">")
-                                    item.gymServiceStart = item.gymServiceStart.substring(0,10)
-                                    item.gymServiceEnd = item.gymServiceEnd.substring(0,10)
-                                    item.gymActiveStart = item.gymActiveStart.substring(0,10)
-                                    item.gymActiveEnd = item.gymActiveEnd.substring(0,10)
-                                }
-                                _footballList.emit(convertData)
-                            }
-                        }
-                        else -> {
-                            Log.d("test","fail $it")
-                        }
-                    }
-                }
-        }
-    }
+    private val _soccerList = MutableStateFlow(listOf<GymDomainModel>())
+    val soccerList = _soccerList.asStateFlow()
 
     fun getCampingData() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -81,6 +51,40 @@ class HomeViewModel @Inject constructor(
                                 }
 
                                 _campingList.emit(convertData)
+                            }
+                        }
+                        else -> {
+                            Log.d("test","fail $it")
+                        }
+                    }
+                }
+        }
+    }
+
+    fun getGymData(minClass: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getGymClassData(1, 100, minClass)
+                .collectLatest {
+                    when (it) {
+                        is ApiResult.Success -> {
+                            it.data?.let { data ->
+                                val convertData = data.filter { filterData ->
+                                    filterData.gymActive == "접수중"
+                                }
+                                convertData.map { item ->
+                                    item.gymTitle = item.gymTitle.replace("&lt;","<")
+                                    item.gymTitle = item.gymTitle.replace("&gt;",">")
+                                    item.gymServiceStart = item.gymServiceStart.substring(0,10)
+                                    item.gymServiceEnd = item.gymServiceEnd.substring(0,10)
+                                    item.gymActiveStart = item.gymActiveStart.substring(0,10)
+                                    item.gymActiveEnd = item.gymActiveEnd.substring(0,10)
+                                }
+                                if (minClass == "풋살장") {
+                                    _footballList.emit(convertData)
+                                } else if (minClass =="축구장") {
+                                    _soccerList.emit(convertData)
+                                }
+
                             }
                         }
                         else -> {

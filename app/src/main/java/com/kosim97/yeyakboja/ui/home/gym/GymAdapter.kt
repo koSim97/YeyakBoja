@@ -1,4 +1,4 @@
-package com.kosim97.yeyakboja.ui.home.football
+package com.kosim97.yeyakboja.ui.home.gym
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,14 +9,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kosim97.domain.model.GymDomainModel
-import com.kosim97.yeyakboja.databinding.FootballRvItemBinding
+import com.kosim97.yeyakboja.databinding.GymRvItemBinding
 import com.kosim97.yeyakboja.ui.home.HomeFragmentDirections
 
-class FootballAdapter(navController: NavController): ListAdapter<GymDomainModel, FootballAdapter.FootballAdapterViewHolder>(diffUtil) {
+class GymAdapter(navController: NavController): ListAdapter<GymDomainModel, GymAdapter.FootballAdapterViewHolder>(diffUtil) {
     private var mContext: Context? = null
     private val mNavController = navController
 
-    inner class FootballAdapterViewHolder(private val binding: FootballRvItemBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class FootballAdapterViewHolder(private val binding: GymRvItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(currentItem: GymDomainModel) {
             binding.gymItem = currentItem
             mContext?.let {
@@ -26,7 +26,7 @@ class FootballAdapter(navController: NavController): ListAdapter<GymDomainModel,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FootballAdapterViewHolder {
-        val binding = FootballRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = GymRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         mContext = parent.context
         return FootballAdapterViewHolder(binding)
     }

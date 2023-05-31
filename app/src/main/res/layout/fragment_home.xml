@@ -88,6 +88,36 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/football_tv" />
 
+            <TextView
+                android:id="@+id/soccer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="축구장"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/football_rv" />
+
+            <Button
+                android:id="@+id/soccer_btn"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/cm_btn_title_back_right"
+                app:layout_constraintBottom_toTopOf="@+id/soccer_rv"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/soccer_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/soccer_tv" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
