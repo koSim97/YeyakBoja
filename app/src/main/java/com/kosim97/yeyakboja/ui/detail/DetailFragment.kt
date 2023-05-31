@@ -61,6 +61,7 @@ class DetailFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailViewModel.reserveList.collectLatest {
+                    detailBinding.calendar.currentDate = CalendarDay.from(it[0].substring(0,4).toInt(),it[0].substring(5,6).toInt(),it[0].substring(6,8).toInt())
                     for (i in it.indices) {
                         detailBinding.calendar.addDecorator(NotReserveDayDecorator(CalendarDay.from(it[i].substring(0,4).toInt(),it[i].substring(5,6).toInt(),it[i].substring(6,8).toInt())))
                     }

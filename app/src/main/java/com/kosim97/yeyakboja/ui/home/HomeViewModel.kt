@@ -32,32 +32,17 @@ class HomeViewModel @Inject constructor(
     private val _footballList = MutableSharedFlow<List<GymDomainModel>>(0)
     val footballList = _footballList.asSharedFlow()
 
-    fun getGymAllData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            gymUseCase(1,10)
-                .collectLatest {
-                    when(it) {
-                        is ApiResult.Success -> {
-                            Log.d("test","asd ${it.data}")
-                        }
-                        else -> {
-                            Log.d("test","asd1 ${it}")
-                        }
-                    }
-
-                }
-        }
-    }
-
     fun getFootballData() {
         viewModelScope.launch(Dispatchers.IO) {
-            getGymClassData(1, 10, "풋살장")
+            getGymClassData(1, 100, "풋살장")
                 .collectLatest {
                     when (it) {
                         is ApiResult.Success -> {
-                            Log.d("test","success ${it.data}")
                             it.data?.let { data ->
-                                data.map { item ->
+                                val convertData = data.filter { filterData ->
+                                    filterData.gymActive == "접수중"
+                                }
+                                convertData.map { item ->
                                     item.gymTitle = item.gymTitle.replace("&lt;","<")
                                     item.gymTitle = item.gymTitle.replace("&gt;",">")
                                     item.gymServiceStart = item.gymServiceStart.substring(0,10)
@@ -65,7 +50,7 @@ class HomeViewModel @Inject constructor(
                                     item.gymActiveStart = item.gymActiveStart.substring(0,10)
                                     item.gymActiveEnd = item.gymActiveEnd.substring(0,10)
                                 }
-                                _footballList.emit(data)
+                                _footballList.emit(convertData)
                             }
                         }
                         else -> {
@@ -78,12 +63,15 @@ class HomeViewModel @Inject constructor(
 
     fun getCampingData() {
         viewModelScope.launch(Dispatchers.IO) {
-            getCampingData(1, 10, "캠핑장")
+            getCampingData(1, 100, "캠핑장")
                 .collectLatest {
                     when (it) {
                         is ApiResult.Success -> {
                             it.data?.let { data ->
-                                data.map {item ->
+                                val convertData = data.filter {filterData ->
+                                    filterData.campingActive == "접수중"
+                                }
+                                convertData.map { item ->
                                     item.campingTitle = item.campingTitle.replace("&lt;","<")
                                     item.campingTitle = item.campingTitle.replace("&gt;",">")
                                     item.campingServiceStart = item.campingServiceStart.substring(0,10)
@@ -91,7 +79,8 @@ class HomeViewModel @Inject constructor(
                                     item.campingActiveStart = item.campingActiveStart.substring(0,10)
                                     item.campingActiveEnd = item.campingActiveEnd.substring(0,10)
                                 }
-                                _campingList.emit(data)
+
+                                _campingList.emit(convertData)
                             }
                         }
                         else -> {

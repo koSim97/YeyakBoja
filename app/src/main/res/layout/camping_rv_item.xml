@@ -59,7 +59,7 @@
             tools:text="adsadsa" />
 
         <TextView
-            android:id="@+id/camping_service_name"
+            android:id="@+id/camping_active_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_medium"
@@ -68,6 +68,42 @@
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/camping_lo_tv" />
+
+        <TextView
+            android:id="@+id/camping_active_start_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{campingItem.campingActiveStart}"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/camping_active_name"
+            tools:text="adsadsa" />
+
+        <TextView
+            android:id="@+id/camping_active_end_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@{campingItem.campingActiveEnd}"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toEndOf="@+id/camping_active_start_tv"
+            app:layout_constraintTop_toBottomOf="@+id/camping_active_name"
+            tools:text="adsadsa" />
+
+        <TextView
+            android:id="@+id/camping_service_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="이용기간"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/camping_active_start_tv" />
 
         <TextView
             android:id="@+id/camping_service_start_tv"
@@ -90,45 +126,8 @@
             android:text="@{campingItem.campingServiceEnd}"
             android:textColor="@color/black"
             android:textSize="15dp"
-            app:layout_constraintStart_toEndOf="@+id/camping_service_start_tv"
-            app:layout_constraintTop_toBottomOf="@+id/camping_service_name"
-            tools:text="adsadsa" />
-
-        <TextView
-            android:id="@+id/camping_active_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="이용기간"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/camping_service_start_tv" />
-
-        <TextView
-            android:id="@+id/camping_active_start_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:fontFamily="@font/roboto_regular"
-            android:text="@{campingItem.campingActiveStart}"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/camping_active_name"
-            tools:text="adsadsa" />
-
-        <TextView
-            android:id="@+id/camping_active_end_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_regular"
-            android:text="@{campingItem.campingActiveEnd}"
-            android:textColor="@color/black"
-            android:textSize="15dp"
             app:layout_constraintStart_toEndOf="@+id/camping_active_start_tv"
-            app:layout_constraintTop_toBottomOf="@+id/camping_active_name"
+            app:layout_constraintTop_toBottomOf="@+id/camping_service_name"
             tools:text="adsadsa" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.kosim97.yeyakboja.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.util.Collections
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -57,14 +59,20 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.campingList.collectLatest {
-                    setCampingItem(it)
+                    val data = it.sortedByDescending {sort ->
+                        sort.campingActiveStart.replace("-","")
+                    }
+                    setCampingItem(data)
                 }
             }
         }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.footballList.collectLatest {
-                    setFootballItem(it)
+                    val data = it.sortedByDescending { sort ->
+                        sort.gymActiveStart.replace("-","")
+                    }
+                    setFootballItem(data)
                 }
             }
         }
