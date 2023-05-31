@@ -54,11 +54,11 @@ class DetailFragment : Fragment() {
         }
         if (args.isGymData) {
             detailBinding.gymItem = args.gymItem
-            Glide.with(requireContext()).load(args.gymItem?.gymImage).into(detailBinding.campingIv)
+            Glide.with(requireContext()).load(args.gymItem?.gymImage).into(detailBinding.detailIv)
             args.gymItem?.let { detailViewModel.getReserveList(it.gymURL) }
         } else {
             detailBinding.campingItem = args.campingItem
-            Glide.with(requireContext()).load(args.campingItem?.campingImage).into(detailBinding.campingIv)
+            Glide.with(requireContext()).load(args.campingItem?.campingImage).into(detailBinding.detailIv)
             args.campingItem?.let { detailViewModel.getReserveList(it.campingURL) }
         }
         detailBinding.calendar.addDecorator(ReserveDayDecorator())
