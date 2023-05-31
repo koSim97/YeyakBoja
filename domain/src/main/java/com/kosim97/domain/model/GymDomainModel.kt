@@ -1,5 +1,9 @@
 package com.kosim97.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class GymDomainModel(
     var gymCategory: String,
     var gymActive: String,
@@ -17,4 +21,4 @@ data class GymDomainModel(
     var gymPhone: String,
     var gymUseStart: String,
     var gymUseEnd: String
-)
+): Parcelable

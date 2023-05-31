@@ -26,7 +26,14 @@
         android:id="@+id/detailFragment"
         android:name="com.kosim97.yeyakboja.ui.detail.DetailFragment"
         android:label="DetailFragment" >
-        <argument android:name="item"
-            app:argType="com.kosim97.domain.model.CampingDomainModel" />
+        <argument android:name="campingItem"
+            app:argType="com.kosim97.domain.model.CampingDomainModel"
+            app:nullable="true" />
+        <argument android:name="gymItem"
+            app:argType="com.kosim97.domain.model.GymDomainModel"
+            app:nullable="true" />
+        <argument
+            android:name="isGymData"
+            app:argType="boolean" />
     </fragment>
 </navigation>

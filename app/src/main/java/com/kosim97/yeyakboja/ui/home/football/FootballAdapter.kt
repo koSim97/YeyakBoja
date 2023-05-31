@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kosim97.domain.model.GymDomainModel
 import com.kosim97.yeyakboja.databinding.FootballRvItemBinding
+import com.kosim97.yeyakboja.ui.home.HomeFragmentDirections
 
 class FootballAdapter(navController: NavController): ListAdapter<GymDomainModel, FootballAdapter.FootballAdapterViewHolder>(diffUtil) {
     private var mContext: Context? = null
@@ -32,6 +33,10 @@ class FootballAdapter(navController: NavController): ListAdapter<GymDomainModel,
 
     override fun onBindViewHolder(holder: FootballAdapterViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(campingItem = null, gymItem = getItem(position), true)
+            mNavController.navigate(action)
+        }
     }
 
     override fun submitList(list: MutableList<GymDomainModel>?) {

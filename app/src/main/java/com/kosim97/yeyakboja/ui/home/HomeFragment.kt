@@ -30,6 +30,7 @@ class HomeFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var campingAdapter: CampingAdapter
     private lateinit var footballAdapter: FootballAdapter
+    private var isFirst = true
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

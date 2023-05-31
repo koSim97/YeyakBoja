@@ -37,7 +37,7 @@ class CampingAdapter(navController: NavController): ListAdapter<CampingDomainMod
     override fun onBindViewHolder(holder: CampingAdapterViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(item = getItem(position))
+            val action = HomeFragmentDirections.actionNavigationHomeToDetailFragment(campingItem = getItem(position), gymItem = null, false)
             mNavController.navigate(action)
         }
     }
