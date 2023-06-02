@@ -1,5 +1,6 @@
 package com.kosim97.data.repositoryImp.gym
 
+import com.kosim97.data.mapper.HomeRemoteResponseMapper
 import com.kosim97.data.remote.gym.GymRemoteDataSource
 import com.kosim97.domain.repository.GymRemoteRepository
 import com.kosim97.domain.model.GymDomainModel
@@ -12,15 +13,15 @@ class GymRemoteRepositoryImp @Inject constructor(
     private val remote: GymRemoteDataSource
 ): GymRemoteRepository {
 
-    override suspend fun getGymAllList(start: Int, end: Int): Flow<ApiResult<List<GymDomainModel>>> = flow {
-        emit(remote.getGymAllList(start, end))
+    override suspend fun getGymAllList(start: Int, end: Int): ApiResult<List<GymDomainModel>>{
+        return HomeRemoteResponseMapper.gymDataMapper(remote.getGymAllList(start, end))
     }
 
     override suspend fun getGymClassList(
         start: Int,
         end: Int,
         minClass: String
-    ): Flow<ApiResult<List<GymDomainModel>>> = flow {
-        emit(remote.getGymClassList(start, end, minClass))
+    ): ApiResult<List<GymDomainModel>> {
+        return HomeRemoteResponseMapper.gymDataMapper(remote.getGymClassList(start, end, minClass))
     }
 }

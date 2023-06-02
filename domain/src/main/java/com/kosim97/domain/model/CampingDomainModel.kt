@@ -18,6 +18,7 @@ data class CampingDomainModel(
     var campingActiveStart: String,
     var campingActiveEnd: String,
     var campingImage: String,
+    var campingInfo: String,
     var campingPhone: String,
     var campingUseStart: String,
     var campingUseEnd: String

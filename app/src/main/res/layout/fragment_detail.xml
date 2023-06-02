@@ -221,13 +221,33 @@
                 app:layout_constraintStart_toEndOf="@+id/detail_tel_tv"
                 app:layout_constraintTop_toBottomOf="@+id/detail_service_name" />
 
-            <Button
-                android:id="@+id/detail_go_url"
+            <TextView
+                android:id="@+id/detail_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="예약하러가기"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:text="상세정보"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:fontFamily="@font/roboto_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detail_tel"/>
+
+            <TextView
+                android:id="@+id/detail_info_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="15dp"
+                android:text="@{viewModel.isGymData().booleanValue() ? gymItem.gymInfo : campingItem.campingInfo}"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:fontFamily="@font/roboto_regular"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/detail_tel_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/detail_info"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

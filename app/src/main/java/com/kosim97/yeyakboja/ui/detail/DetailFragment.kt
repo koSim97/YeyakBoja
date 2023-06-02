@@ -1,6 +1,7 @@
 package com.kosim97.yeyakboja.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +51,16 @@ class DetailFragment : Fragment() {
                 args.gymItem?.gymPhone = getString(R.string.detail_empty_phone)
                 detailBinding.detailTelBtn.isEnabled = false
             }
+            var convertInfo = args.gymItem?.gymInfo
+            convertInfo = convertInfo?.replace("&nbsp;", "")
+            convertInfo = convertInfo?.replace("&bull;","*")
+            convertInfo = convertInfo?.replace("&rarr;","->")
+            convertInfo = convertInfo?.replace("&quot;","\"")
+            convertInfo = convertInfo?.replace("&middot;",", ")
+            if (convertInfo != null) {
+                args.gymItem?.gymInfo = convertInfo
+                Log.d("test",convertInfo)
+            }
             detailBinding.gymItem = args.gymItem
             Glide.with(requireContext()).load(args.gymItem?.gymImage).into(detailBinding.detailIv)
             args.gymItem?.let { detailViewModel.getReserveList(it.gymURL) }
@@ -57,6 +68,15 @@ class DetailFragment : Fragment() {
             if (args.campingItem?.campingPhone?.isEmpty() == true) {
                 args.campingItem?.campingPhone = getString(R.string.detail_empty_phone)
                 detailBinding.detailTelBtn.isEnabled = false
+            }
+            var convertInfo = args.campingItem?.campingInfo
+            convertInfo = convertInfo?.replace("&nbsp;", "")
+            convertInfo = convertInfo?.replace("&bull;","*")
+            convertInfo = convertInfo?.replace("&rarr;","->")
+            convertInfo = convertInfo?.replace("&quot;","\"")
+            convertInfo = convertInfo?.replace("&middot;",", ")
+            if (convertInfo != null) {
+                args.campingItem?.campingInfo = convertInfo
             }
             detailBinding.campingItem = args.campingItem
             Glide.with(requireContext()).load(args.campingItem?.campingImage).into(detailBinding.detailIv)

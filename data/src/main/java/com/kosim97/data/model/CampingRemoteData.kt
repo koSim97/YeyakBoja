@@ -14,35 +14,37 @@ data class CampingApiDataList(
 
 data class CampingApiData(
     @SerializedName("MINCLASSNM")
-    var gymCategory: String,
+    var campingCategory: String,
     @SerializedName("SVCSTATNM")
-    var gymActive: String,
+    var campingActive: String,
     @SerializedName("SVCNM")
-    var gymTitle: String,
+    var campingTitle: String,
     @SerializedName("PAYATNM")
-    var gymFee: String,
+    var campingFee: String,
     @SerializedName("PLACENM")
-    var gymLocationName: String,
+    var campingLocationName: String,
     @SerializedName("SVCURL")
-    var gymURL: String,
+    var campingURL: String,
     @SerializedName("X")
-    var gymLocationX: String,
+    var campingLocationX: String,
     @SerializedName("Y")
-    var gymLocationY: String,
+    var campingLocationY: String,
     @SerializedName("SVCOPNBGNDT")
-    var gymServiceStart: String,
+    var campingServiceStart: String,
     @SerializedName("SVCOPNENDDT")
-    var gymServiceEnd: String,
+    var campingServiceEnd: String,
     @SerializedName("RCPTBGNDT")
-    var gymActiveStart: String,
+    var campingActiveStart: String,
     @SerializedName("RCPTENDDT")
-    var gymActiveEnd: String,
+    var campingActiveEnd: String,
     @SerializedName("IMGURL")
-    var gymImage: String,
+    var campingImage: String,
+    @SerializedName("DTLCONT")
+    var campingInfo: String,
     @SerializedName("TELNO")
-    var gymPhone: String,
+    var campingPhone: String,
     @SerializedName("V_MIN")
-    var gymUseStart: String,
+    var campingUseStart: String,
     @SerializedName("V_MAX")
-    var gymUseEnd: String
+    var campingUseEnd: String
 )

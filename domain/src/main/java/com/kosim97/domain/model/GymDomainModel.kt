@@ -18,6 +18,7 @@ data class GymDomainModel(
     var gymActiveStart: String,
     var gymActiveEnd: String,
     var gymImage: String,
+    var gymInfo: String,
     var gymPhone: String,
     var gymUseStart: String,
     var gymUseEnd: String

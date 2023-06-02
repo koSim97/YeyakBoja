@@ -11,7 +11,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:background="@drawable/home_itme_shape"
         android:padding="10dp"
         android:layout_margin="10dp">

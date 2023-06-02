@@ -67,30 +67,21 @@ class HomeFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.campingList.collectLatest {
-                    val data = it.sortedByDescending {sort ->
-                        sort.campingActiveStart.replace("-","")
-                    }
-                    setCampingItem(data)
+                    setCampingItem(it)
                 }
             }
         }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.footballList.collectLatest {
-                    val data = it.sortedByDescending { sort ->
-                        sort.gymActiveStart.replace("-","")
-                    }
-                    setFootballItem(data)
+                    setFootballItem(it)
                 }
             }
         }
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.Main) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.soccerList.collectLatest {
-                    val data = it.sortedByDescending { sort ->
-                        sort.gymActiveStart.replace("-","")
-                    }
-                    setSoccerItem(data)
+                    setSoccerItem(it)
                 }
             }
         }

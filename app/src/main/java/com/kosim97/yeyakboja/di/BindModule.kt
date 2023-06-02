@@ -12,6 +12,10 @@ import com.kosim97.data.repositoryImp.reserve.ReserveRemoteRepositoryImp
 import com.kosim97.domain.repository.CampingRemoteRepository
 import com.kosim97.domain.repository.GymRemoteRepository
 import com.kosim97.domain.repository.ReserveRemoteRepository
+import com.kosim97.domain.usecase.GetCampingInfo
+import com.kosim97.domain.usecase.GetCampingInfoImp
+import com.kosim97.domain.usecase.GetGymClassInfo
+import com.kosim97.domain.usecase.GetGymClassInfoImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -35,6 +39,12 @@ abstract class BindModule {
 
     @Binds
     @Singleton
+    abstract fun bindGetGymClassInfo(
+        getGymClassInfoImp: GetGymClassInfoImp
+    ): GetGymClassInfo
+
+    @Binds
+    @Singleton
     abstract fun bindCampingRemoteDataSource(
         campingRemoteDataSourceImp: CampingRemoteDataSourceImp
     ): CampingRemoteDataSource
@@ -44,6 +54,12 @@ abstract class BindModule {
     abstract fun bindCampingRemoteRepository(
         campingRemoteRepositoryImp: CampingRemoteRepositoryImp
     ): CampingRemoteRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindGetCampingInfo(
+        getCampingInfoImp: GetCampingInfoImp
+    ): GetCampingInfo
 
     @Binds
     @Singleton

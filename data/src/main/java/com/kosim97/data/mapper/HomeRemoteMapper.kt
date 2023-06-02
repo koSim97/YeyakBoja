@@ -29,6 +29,7 @@ object HomeRemoteResponseMapper {
                         it.gymActiveStart,
                         it.gymActiveEnd,
                         it.gymImage,
+                        it.gymInfo,
                         it.gymPhone,
                         it.gymUseStart,
                         it.gymUseEnd
@@ -49,22 +50,23 @@ object HomeRemoteResponseMapper {
             true -> {
                 val campingData = responseData.body()?.list?.dataList?.map {
                     CampingDomainModel(
-                        it.gymCategory,
-                        it.gymActive,
-                        it.gymTitle,
-                        it.gymFee,
-                        it.gymLocationName,
-                        it.gymURL,
-                        it.gymLocationX,
-                        it.gymLocationY,
-                        it.gymServiceStart,
-                        it.gymServiceEnd,
-                        it.gymActiveStart,
-                        it.gymActiveEnd,
-                        it.gymImage,
-                        it.gymPhone,
-                        it.gymUseStart,
-                        it.gymUseEnd
+                        it.campingCategory,
+                        it.campingActive,
+                        it.campingTitle,
+                        it.campingFee,
+                        it.campingLocationName,
+                        it.campingURL,
+                        it.campingLocationX,
+                        it.campingLocationY,
+                        it.campingServiceStart,
+                        it.campingServiceEnd,
+                        it.campingActiveStart,
+                        it.campingActiveEnd,
+                        it.campingImage,
+                        it.campingInfo,
+                        it.campingPhone,
+                        it.campingUseStart,
+                        it.campingUseEnd
                     )
                 }
                 return ApiResult.Success(campingData)

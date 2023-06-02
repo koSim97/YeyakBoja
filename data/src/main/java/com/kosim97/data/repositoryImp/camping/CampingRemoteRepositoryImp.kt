@@ -1,5 +1,6 @@
 package com.kosim97.data.repositoryImp.camping
 
+import com.kosim97.data.mapper.HomeRemoteResponseMapper
 import com.kosim97.data.remote.camping.CampingRemoteDataSource
 import com.kosim97.domain.model.CampingDomainModel
 import com.kosim97.domain.repository.CampingRemoteRepository
@@ -16,7 +17,7 @@ class CampingRemoteRepositoryImp @Inject constructor(
         end: Int,
         minClass: String
     ): Flow<ApiResult<List<CampingDomainModel>>> = flow {
-        emit(remote.getCampingList(start, end, minClass))
+        emit(HomeRemoteResponseMapper.campingDataMapper(remote.getCampingList(start, end, minClass)))
     }
 
 }

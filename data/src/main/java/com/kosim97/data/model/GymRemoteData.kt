@@ -39,6 +39,8 @@ data class GymApiData(
     var gymActiveEnd: String,
     @SerializedName("IMGURL")
     var gymImage: String,
+    @SerializedName("DTLCONT")
+    var gymInfo: String,
     @SerializedName("TELNO")
     var gymPhone: String,
     @SerializedName("V_MIN")
